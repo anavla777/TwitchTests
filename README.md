@@ -1,4 +1,8 @@
-﻿# Automation project for Twitch.tv
+﻿# Automation project for Twitch.tv 
+<p align="center"> 
+<a href="https://twitch.tv"><img src="media/logo/twitch.svg" width="100" height="100"  alt="Twitch"/></a>
+</p>
+
  > Twitch is a video live-streaming service that focuses on video game live streaming,
 > including broadcasts of esports competitions, in addition to offering music broadcasts, creative content, and "in real life" streams.
 ## **Table of contents:**
@@ -6,7 +10,7 @@ ____
 
 * <a href="#tools">Technology stack</a>
 
-* <a href="#cases">Exampless of automated tests</a>
+* <a href="#cases">Examples of automated tests</a>
 
 * <a href="#jenkins">Build in Jenkins</a>
 
@@ -46,7 +50,7 @@ ____
 
 ____
 <a id="jenkins"></a>
-## <img alt="Jenkins" height="25" src="media/logo/Jenkins.svg" width="25"/></a><a name="Building"></a>Builing in [Jenkins](https://jenkins.autotests.cloud/job/C27-anavla777-unit14-TwitchTests/)</a>
+## <img alt="Jenkins" height="25" src="media/logo/Jenkins.svg" width="25"/></a><a name="Building"></a>Building in [Jenkins](https://jenkins.autotests.cloud/job/C27-anavla777-unit14-TwitchTests/)</a>
 ____
 <p align="center">  
 <a href="https://jenkins.autotests.cloud/job/C27-anavla777-unit14-TwitchTests/"><img src="media/screenshots/JenkinsBuild.PNG" alt="Jenkins" width="950"/></a>  
