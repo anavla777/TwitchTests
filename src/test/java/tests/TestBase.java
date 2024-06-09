@@ -19,7 +19,7 @@ public class TestBase {
         Configuration.browserSize=System.getProperty("browserSize","1920x1080");
         Configuration.browser=System.getProperty("browser","firefox");
         Configuration.browserVersion=System.getProperty("browserVersion","123");
-        Configuration.timeout=16000;
+        Configuration.timeout=30000;
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,

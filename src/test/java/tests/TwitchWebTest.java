@@ -113,7 +113,7 @@ public class TwitchWebTest extends TestBase {
 
     static Stream<Arguments> streamerShouldHaveCorrectNicknameAndVideoPlayerTest(){
         return Stream.of(
-                Arguments.of("Anakq"),
+                Arguments.of("mL7support"),
                 Arguments.of("shroud"),
                 Arguments.of("PewDiePie")
         );
