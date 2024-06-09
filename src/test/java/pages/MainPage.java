@@ -15,7 +15,8 @@ public class MainPage {
             searchInput = $("[data-a-target='tw-input']"),
             signUpButton= $("[data-a-target='signup-button']"),
             streamLink=$("[data-test-selector='StreamTitle']"),
-            tagSearch=$("#dropdown-search-input");
+            tagSearch=$("#dropdown-search-input"),
+            browseLink=$("[data-a-target='browse-link']");
     private final ElementsCollection
             searchResults=$$("[role='option']"),
             categoryCards=$$(".game-card");
@@ -43,10 +44,16 @@ public class MainPage {
         categoryCards.last(2).shouldHave(texts(tag,tag));
     }
 
-    public MainPage openPage(String path) {
-        open(path);
+    public MainPage openPage() {
+        open("/");
         return this;
     }
+
+    public MainPage openBrowsePage() {
+        browseLink.click();
+        return this;
+    }
+
     public MainPage findCategory(String category) {
         $("[data-a-id='card-" + category.replaceAll("\\s","") + "']")
                 .scrollIntoView(false).click();

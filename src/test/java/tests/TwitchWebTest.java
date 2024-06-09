@@ -26,7 +26,7 @@ public class TwitchWebTest extends TestBase {
     @DisplayName("Twitch Main Page has correct text on RU and EN languages")
     void twitchMainPageShouldDisplayCorrectTextTest(Language language) {
         step("Open main page", () -> {
-            mainpage.openPage("/");
+            mainpage.openPage();
         });
         step ("Switch language to " + language.name(), () -> {
             mainpage.switchLanguage(language.name());
@@ -41,9 +41,14 @@ public class TwitchWebTest extends TestBase {
     @Tag("WEB")
     @DisplayName("Selected category should have correct category name")
     public void categoryPageShouldDisplayCorrectTextTest(String category) {
-        step("Open /directory page", () -> {
-            mainpage.openPage("/directory");
+        step("Open main page", () -> {
+            mainpage.openPage();
         });
+
+        step("Open Browse page", () -> {
+            mainpage.openBrowsePage();
+        });
+
         step("Find " + category + " category",()->{
             mainpage.findCategory(category);
         });
@@ -58,11 +63,12 @@ public class TwitchWebTest extends TestBase {
     @DisplayName("Streamer should have correct name and video player")
     public void streamerShouldHaveCorrectNicknameAndVideoPlayerTest(String streamer) {
         step("Open main page", () -> {
-            mainpage.openPage("/");
+            mainpage.openPage();
         });
         step("Find " + streamer + " streamer by nickname", () -> {
             mainpage.findStreamer(streamer);
         });
+
         step("Streamer has correct name and video player", () -> {
             mainpage.verifyStreamer(streamer);
         });
@@ -73,12 +79,17 @@ public class TwitchWebTest extends TestBase {
     @Tag("WEB")
     @DisplayName("Filtered categories should have specified tag")
     public void filterByTagsTest(String tag) {
-        step("Open directory page", () -> {
-            mainpage.openPage("/directory");
+        step("Open main page", () -> {
+            mainpage.openPage();
         });
+        step("Navigate to Browse page", () -> {
+            mainpage.openBrowsePage();
+        });
+
         step("Enter tag",() ->{
             mainpage.enterTag(tag);
         });
+
         step("Check that category has " + tag +" tag",()->{
             mainpage.validateTag(tag);
         });
@@ -89,7 +100,7 @@ public class TwitchWebTest extends TestBase {
     @DisplayName("Live stream should be opened")
     public void openLiveChannelTest() {
         step("Open main page",()->{
-            mainpage.openPage("/");
+            mainpage.openPage();
         });
         step("Open first live stream",()->{
             mainpage.openLiveStream();
