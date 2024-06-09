@@ -14,8 +14,6 @@ ____
 
 * <a href="#allure">Allure report</a>
 
-* <a href="#allure-testops">Allure TestOps Integration</a>
-
 * <a href="#telegram"> Telegram Notifications</a>
 
 * <a href="#video">Examples of test execution in Selenoid</a>
