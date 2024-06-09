@@ -36,7 +36,7 @@ public class TwitchWebTest extends TestBase {
                 });
     }
 
-    @ValueSource(strings = {"Heroes of Might and Magic III: The Restoration of Erathia", "League of Legends", "Fortnite"})
+    @ValueSource(strings = {"Dota 2", "League of Legends", "Fortnite"})
     @ParameterizedTest(name="Selected category should have {0} name")
     @Tag("WEB")
     @DisplayName("Selected category should have correct category name")
