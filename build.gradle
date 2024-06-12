@@ -9,6 +9,9 @@ repositories {
 def allureVersion = "2.27.0",
     selenideVersion = "7.3.1"
 
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
 allure {
     report {
         version.set(allureVersion)
@@ -45,11 +48,6 @@ tasks.withType(Test).configureEach {
     }
 }
 
-tasks.register('registrationTests', Test) {
-    useJUnitPlatform {
-        includeTags("demoqaForm")
-    }
-}
 tasks.register('twitchTests', Test) {
     useJUnitPlatform {
         includeTags("WEB")

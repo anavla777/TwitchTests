@@ -4,8 +4,12 @@ import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
@@ -15,7 +19,9 @@ import static org.openqa.selenium.logging.LogType.BROWSER;
 
 public class Attach {
 
-    private static final String selenoidHost = System.getProperty("wdhost", null);
+    private static final Logger logger = LoggerFactory.getLogger(Attach.class);
+
+    private static final String selenoidHost = System.getProperty("wdhost", "null");
 
     public static String getSelenoidHost() {
         return selenoidHost;
@@ -50,13 +56,13 @@ public class Attach {
                 + "' type='video/mp4'></video></body></html>";
     }
 
-    public static URL getVideoUrl() {
+    public static URI getVideoUrl() {
         if (getSelenoidHost() != null) {
             String videoUrl = "https://" + getSelenoidHost() + "/video/" + sessionId() + ".mp4";
             try {
-                return new URL(videoUrl);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
+                return new URI(videoUrl);
+            } catch (URISyntaxException e) {
+                logger.error("An exception occurred!", e);
             }
         }
         return null;

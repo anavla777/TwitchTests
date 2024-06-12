@@ -40,7 +40,7 @@ ____
 
 ____
 <a id="cases"></a>
-## <a name="Exampless of automated tests">**Examples of automated tests:**</a>
+## <a name="Examples of automated tests">**Examples of automated tests:**</a>
 ____
 - ✓ *twitchMainPageShouldDisplayCorrectTextTest() - Localization switch test*
 - ✓ *categoryPageShouldDisplayCorrectTextTest() - Check text for selected category*
@@ -70,9 +70,18 @@ ____
 ___
 ***Locally:***
 ```bash  
-gradle clean twitchTests
+gradle clean twitchTests 
+"-Dbrowser=$BROWSER"
+"-DbrowserVersion=$BROWSER_VERSION"
+"-DbrowserSize=$BROWSER_SIZE"
+"-Dwdhost=YOUR_REMOTE_SELENOID_HOST"
+"-Dselenide.remote=https://USERNAME:PASS@wdhost/wd/hub"
 ```
-
+- Specify your own parameters
+- Launch allure reporting server:
+```bash 
+gradle allureServe
+```
 ***Remote launch via Jenkins:***
 ```bash  
 clean twitchTests
@@ -82,6 +91,7 @@ clean twitchTests
 -DbaseUrl=${baseUrl}
 -Dselenide.remote=https://username:pass@${REMOTE_BROWSER_HOST}/wd/hub
 ```
+where username and pass - specified credentials
 ___
 <a id="allure"></a>
 ## <img alt="Allure" height="25" src="media/logo/Allure.svg" width="25"/></a> <a name="Allure"></a>Allure [report](https://jenkins.autotests.cloud/job/C27-anavla777-unit14-TwitchTests/allure/)</a>
@@ -90,13 +100,13 @@ ___
 ### *Report main page*
 
 <p align="center">  
-<img title="Allure Overview Dashboard" src="media/screenshots/AllureMain.PNG" width="850">  
+<img title="Allure Overview Dashboard" src="media/screenshots/AllureMain.PNG" width="850" alt="">  
 </p>  
 
 ### *Graphs*
 
   <p align="center">  
-<img title="Allure Graphics" src="media/screenshots/Graphs.PNG" width="850">
+<img title="Allure Graphics" src="media/screenshots/Graphs.PNG" width="850" alt="">
 </p>
 
 ___
@@ -105,7 +115,7 @@ ___
 ## <img alt="Allure" height="25" src="media/logo/Telegram.svg" width="25"/></a> Telegram Notifications
 ____
 <p align="center">  
-<img title="Allure Overview Dashboard" src="media/screenshots/telegram.PNG" width="550">  
+<img title="Allure Overview Dashboard" src="media/screenshots/telegram.PNG" width="550" alt="">  
 </p>
 
 ____

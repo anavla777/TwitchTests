@@ -4,78 +4,71 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.LanguageSwitcher;
 
-import static com.codeborne.selenide.CollectionCondition.texts;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class MainPage {
     private final SelenideElement
             searchInput = $("[data-a-target='tw-input']"),
-            signUpButton= $("[data-a-target='signup-button']"),
-            streamLink=$("[data-test-selector='StreamTitle']"),
-            tagSearch=$("#dropdown-search-input"),
-            browseLink=$("[data-a-target='browse-link']");
+            signUpButton = $("[data-a-target='signup-button']"),
+            streamLink = $("[data-test-selector='StreamTitle']"),
+            tagSearch = $("#dropdown-search-input"),
+            browseLink = $("[data-a-target='browse-link']");
     private final ElementsCollection
-            searchResults=$$("[role='option']"),
-            categoryCards=$$(".game-card");
+            searchResults = $$("[role='option']"),
+            categoryCards = $$(".game-card");
 
-    LanguageSwitcher languageSwitcher=new LanguageSwitcher();
+    private final LanguageSwitcher languageSwitcher = new LanguageSwitcher();
 
     public void checkLocalization(String description) {
         signUpButton.shouldHave(text(description));
     }
+
     public void switchLanguage(String language) {
         languageSwitcher.selectLanguage(language);
     }
 
-    public MainPage enterTag(String tag) {
+    public void enterTag(String tag) {
         tagSearch.setValue(tag);
         searchResults.findBy(text(tag)).click();
-        return this;
     }
 
     public void validateTag(String tag) {
-        tagSearch.setValue(tag);
-        searchResults.findBy(text(tag)).click();
-        categoryCards.first().$("button").shouldHave(text(tag));
-        categoryCards.get(1).$("button").shouldHave(text(tag));
-        categoryCards.last(2).shouldHave(texts(tag,tag));
+        categoryCards.first().$(".tw-tag").shouldHave(exactText(tag));
+        categoryCards.get(1).$(".tw-tag").shouldHave(exactText(tag));
+        categoryCards.last().$(".tw-tag").shouldHave(exactText(tag));
     }
 
-    public MainPage openPage() {
+    public void openPage() {
         open("/");
-        return this;
     }
 
-    public MainPage openBrowsePage() {
+    public void openBrowsePage() {
         browseLink.click();
-        return this;
     }
 
-    public MainPage findCategory(String category) {
-        $("[data-a-id='card-" + category.replaceAll("\\s","") + "']")
+    public void findCategory(String category) {
+        $("[data-a-id='card-" + category.replaceAll("\\s", "") + "']")
                 .scrollIntoView(false).click();
-        return this;
     }
+
     public void verifyCategory(String category) {
-        $("h1").shouldHave(text(category));
+        $("h1").shouldHave(exactText(category));
     }
-    public MainPage findStreamer(String streamer) {
-        searchInput.setValue(streamer).pressEnter();
+
+    public void findStreamer(String streamer) {
+        searchInput.setValue(streamer).hover().pressEnter();
         $(byText(streamer)).click();
-        return this;
     }
 
-    public MainPage openLiveStream() {
+    public void openLiveStream() {
         streamLink.click();
-        return this;
     }
 
-    public void checkLiveChannelAttributes(){
+    public void checkLiveChannelAttributes() {
         $("[data-test-selector='video-player__video-layout']").shouldBe(visible);
-        $(".tw-channel-status-text-indicator").shouldHave(text("LIVE"));
+        $(".tw-channel-status-text-indicator").shouldHave(exactText("LIVE"));
     }
 
     public void verifyStreamer(String streamer) {
