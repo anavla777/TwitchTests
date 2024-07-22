@@ -14,7 +14,8 @@ import pages.MainPage;
 
 import java.util.stream.Stream;
 
-import static com.codeborne.selenide.logevents.SelenideLogger.step;
+import static io.qameta.allure.Allure.step;
+
 
 @Owner("Ananenkov Vladislav")
 @DisplayName("Twitch web tests")
@@ -58,9 +59,8 @@ public class TwitchWebTest extends TestBase {
 
         step("Open Browse page", mainpage::openBrowsePage);
 
-        step("Find " + category + " category", () -> {
-            mainpage.findCategory(category);
-        });
+        step("Find " + category + " category", () ->
+                mainpage.findCategory(category));
         step("Verify name of selected category", () ->
                 mainpage.verifyCategory(category));
     }
@@ -71,9 +71,8 @@ public class TwitchWebTest extends TestBase {
     @DisplayName("Streamer should have correct name and video player")
     public void streamerShouldHaveCorrectNicknameAndVideoPlayerTest(String streamer) {
         step("Open main page", mainpage::openPage);
-        step("Find " + streamer + " streamer by nickname", () -> {
-            mainpage.findStreamer(streamer);
-        });
+        step("Find " + streamer + " streamer by nickname", () ->
+                mainpage.findStreamer(streamer));
 
         step("Streamer has correct name and video player", () ->
                 mainpage.verifyStreamer(streamer));
@@ -87,9 +86,8 @@ public class TwitchWebTest extends TestBase {
         step("Open main page", mainpage::openPage);
         step("Navigate to Browse page", mainpage::openBrowsePage);
 
-        step("Enter tag", () -> {
-            mainpage.enterTag(tag);
-        });
+        step("Enter tag", () ->
+                mainpage.enterTag(tag));
 
         step("Check that category has " + tag + " tag", () ->
                 mainpage.validateTag(tag));

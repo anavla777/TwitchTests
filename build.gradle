@@ -7,10 +7,11 @@ repositories {
     mavenCentral()
 }
 def allureVersion = "2.27.0",
-    selenideVersion = "7.3.1"
+    selenideVersion = "7.3.1",
+    restAssuredVersion = "5.4.0";
 
-compileJava.options.encoding = 'UTF-8'
-compileTestJava.options.encoding = 'UTF-8'
+compileJava.options.encoding = 'UTF-8';
+compileTestJava.options.encoding = 'UTF-8';
 
 allure {
     report {
@@ -32,7 +33,8 @@ dependencies {
             "io.qameta.allure:allure-selenide:$allureVersion",
             "org.junit.jupiter:junit-jupiter:5.10.2",
             'org.slf4j:slf4j-simple:2.0.13',
-            'org.aeonbits.owner:owner:1.0.12'
+            'org.aeonbits.owner:owner:1.0.12',
+            "io.qameta.allure:allure-selenide:$allureVersion"
     )
 }
 
