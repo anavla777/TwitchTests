@@ -31,70 +31,115 @@ ____
 <a href="https://github.com/"><img src="media/logo/Github.svg" width="50" height="50"  alt="Github"/></a>  
 <a href="https://junit.org/junit5/"><img src="media/logo/JUnit5.svg" width="50" height="50"  alt="JUnit 5"/></a>  
 <a href="https://gradle.org/"><img src="media/logo/Gradle.svg" width="50" height="50"  alt="Gradle"/></a>  
-<a href="https://selenide.org/"><img src="media/logo/Selenide.svg" width="50" height="50"  alt="Selenide"/></a>  
+<a href="https://selenide.org/"><img src="media/logo/Selenide.svg" width="50" height="50"  alt="Selenide"/></a>
+<a href="https://rest-assured.io/"><img alt="RestAssured" height="50" src="media/logo/RestAssured.svg" width="50"/></a>
 <a href="https://aerokube.com/selenoid/"><img src="media/logo/Selenoid.svg" width="50" height="50"  alt="Selenoid"/></a>  
 <a href="https://github.com/allure-framework/allure2"><img src="media/logo/Allure.svg" width="50" height="50"  alt="Allure"/></a> 
 <a href="https://qameta.io/"><img src="media/logo/Allure2.svg" width="50" height="50"  alt="Allure TestOps"/></a>   
-<a href="https://www.jenkins.io/"><img src="media/logo/Jenkins.svg" width="50" height="50"  alt="Jenkins"/></a>   
+<a href="https://www.jenkins.io/"><img src="media/logo/Jenkins.svg" width="50" height="50"  alt="Jenkins"/></a>
+<a href="https://www.atlassian.com/software/jira"><img alt="Jira" height="50" src="media/logo/Jira.svg" width="50"/></a>
+<a href="https://telegram.org/"><img alt="Telegram" height="50" src="media/logo/Telegram.svg" width="50"/></a>
 </p>
+
+- [x] `IntelliJ IDEA` - IDE, used for project development
+- [x] `Java` - Project programming language
+- [x] `Gradle` - project builder
+- [x] `Junit5` - Test framework
+- [x] `Selenide` - UI testing framework based on Selenium Webdriver
+- [x] `REST-assured` - API testing framework
+- [x] `Selenoid` - Tool for remote browser start in Docker container
+- [x] `Jenkins` - CI/CD for remote test runs
+- [x] `Allure Report` - Test reporting tool
+- [x] `Allure TestOps` - Test Management tool
+- [x] `Telegram` - Messanger for test report notifications
+- [x] `Jira` - Bugtracker system
 
 ____
 <a id="cases"></a>
-## <a name="Examples of automated tests">**Examples of automated tests:**</a>
+## <a name="Implemented tests">**Implemented tests:**</a>
 ____
-- ✓ *twitchMainPageShouldDisplayCorrectTextTest() - Localization switch test*
-- ✓ *categoryPageShouldDisplayCorrectTextTest() - Check text for selected category*
-- ✓ *streamerShouldHaveCorrectNicknameAndVideoPlayerTest() - Streamer name and videoplayer test*
-- ✓ *filterByTagsTest() - Test category filtration by tags*
-- ✓ *openLiveChannelTest() - Check first LIVE stream and corresponing attributes*
+### UI
+- [x] UI: Parametrized localization test
+- [x] UI: Parametrized streamer search test
+- [x] UI: Parametrized category filtration
+- [x] UI: Parametrized tag check for category
+- [x] UI: Live stream opening
+- [x] UI: Navigation to Developers page
+- [x] UI: Navigation to Documentation page
+
+### API
+- [x] API: Login with valid credentials
+- [x] API: Login with wrong credentials
+- [x] API: Create broadcast schedule
+- [x] API: Delete broadcast schedule
+- [x] API: Get all streams
+- [x] API: Get all streams with specified language
+- [x] API: Get user info for existing user
+- [x] API: Get user info for non-existing user
+- [x] API: Get video by specified video id
+- [x] API: Get videos for existing user
+- [x] API: Get videos for non-existing user
 
 ____
 <a id="jenkins"></a>
 ## <img alt="Jenkins" height="25" src="media/logo/Jenkins.svg" width="25"/></a><a name="Building"></a>Building in [Jenkins](https://jenkins.autotests.cloud/job/C27-anavla777-unit14-TwitchTests/)</a>
 ____
 <p align="center">  
-<a href="https://jenkins.autotests.cloud/job/C27-anavla777-unit14-TwitchTests/"><img src="media/screenshots/JenkinsBuild.PNG" alt="Jenkins" width="950"/></a>  
+<a href="https://jenkins.autotests.cloud/job/27-anavla777-twitch-tests/"><img src="media/screenshots/JenkinsBuild.PNG" alt="Jenkins" width="950"/></a>  
 </p>
 
 
 ### **Build parameters in Jenkins:**
 
-- *browser (browser, firefox - by default)*
-- *browserVersion (browser version, default - 123)*
-- *browserSize (browser size, default - 1920x1080)*
-- *baseUrl (url address)*
-- *wdhost (Selenoid remote host)*
-
+- *ENV*
+- *TASK (twitchAllTests, twitchUITests, twitchAPITests)*
+Additional setting should be done in remote.properties
 <a id="console"></a>
 ## Launch commands
 ___
 ***Locally:***
 ```bash  
-gradle clean twitchTests 
-"-Dbrowser=$BROWSER"
-"-DbrowserVersion=$BROWSER_VERSION"
-"-DbrowserSize=$BROWSER_SIZE"
-"-Dwdhost=YOUR_REMOTE_SELENOID_HOST"
-"-Dselenide.remote=https://USERNAME:PASS@wdhost/wd/hub"
+gradle clean twitchAllTests 
+  -Denv=remote - for test runs on remote selenoid
+OR
+  -Denv=local - if you want to run tests on your machine
+  Create local.properties (committed in repo) or remote.properties for proper configuration and place it into
+  "src/test/resources/config/" directory
+  ```
+available settings:
+```bash
+baseUrl - project base URL
+browser - browser in which tets will be performed
+browserSize - browser windows size
+browserVersion - browser version
+isRemote - if true, remote selenoid host wil be used for tests. Otherwise 3 settins below will be ignored
+remoteUrl - selenoid URL
+selenoidUser - selenoid user
+selenoidPass - selenoid password
 ```
-- Specify your own parameters
 - Launch allure reporting server:
 ```bash 
 gradle allureServe
 ```
 ***Remote launch via Jenkins:***
 ```bash  
-clean twitchTests
--Dbrowser=${BROWSER}
--DbrowserVersion=${BROWSER_VERSION}
--DbrowserSize=${BROWSER_SIZE}
--DbaseUrl=${baseUrl}
--Dselenide.remote=https://username:pass@${REMOTE_BROWSER_HOST}/wd/hub
+clean twitchAllTests
+-Denv=remote
 ```
-where username and pass - specified credentials
+Additional setting can be configured via remote.properties file:
+```bash 
+baseUrl - project base URL
+browser - browser in which tets will be performed
+browserSize - browser windows size
+browserVersion - browser version
+isRemote - if true, remote selenoid host wil be used for tests
+remoteUrl - selenoid URL
+selenoidUser - selenoid user
+selenoidPass - selenoid password
+```
 ___
 <a id="allure"></a>
-## <img alt="Allure" height="25" src="media/logo/Allure.svg" width="25"/></a> <a name="Allure"></a>Allure [report](https://jenkins.autotests.cloud/job/C27-anavla777-unit14-TwitchTests/allure/)</a>
+## <img alt="Allure" height="25" src="media/logo/Allure.svg" width="25"/></a> <a name="Allure"></a>Allure [report](https://jenkins.autotests.cloud/job/27-anavla777-twitch-tests/allure/)</a>
 ___
 
 ### *Report main page*
@@ -106,10 +151,31 @@ ___
 ### *Graphs*
 
   <p align="center">  
-<img title="Allure Graphics" src="media/screenshots/Graphs.PNG" width="850" alt="">
+<img title="Allure Graphs" src="media/screenshots/Graphs.PNG" width="850" alt="">
 </p>
 
+---
+<a id="testops"></a>
+## <b><a target="_blank" href="add link">Allure TestOps</a></b> Integration
 ___
+>Test run graphs
+>
+<img src="media/screenshots/TestOpsDashbord.PNG">
+
+>Test Cases:
+>
+<img src="media/screenshots/TestOpsTests.PNG"> 
+
+---
+<b><a target="_blank" href="add link">Jira</a></b> Integration
+---
+>Jira task
+>
+<img src="media/screenshots/task.PNG">
+
+>In `Allure:Test Cases` section test cases are displayed
+>
+<img src="media/screenshots/JiraTests.PNG">
 
 <a id="telegram"></a>
 ## <img alt="Allure" height="25" src="media/logo/Telegram.svg" width="25"/></a> Telegram Notifications
