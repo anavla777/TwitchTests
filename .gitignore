@@ -39,6 +39,7 @@ out/
 
 ### Gradle ###
 .gradle
+gradle/wrapper/*
 src/test/resources/config/auth.properties
 src/test/resources/config/remote.properties
 gradlew
