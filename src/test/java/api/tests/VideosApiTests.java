@@ -42,8 +42,8 @@ public class VideosApiTests extends TestBaseAPI {
             assertThat(response.getData().get(0).url).isNotNull();
             assertThat(response.getData().get(1).id).isNotNull();
             assertThat(response.getData().get(1).url).isNotNull();
-            assertThat(response.getData().getLast().id).isNotNull();
-            assertThat(response.getData().getLast().url).isNotNull();
+            assertThat(response.getData().get(response.getData().size()).id).isNotNull();
+            assertThat(response.getData().get(response.getData().size()).url).isNotNull();
         });
     }
 
