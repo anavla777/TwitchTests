@@ -1,17 +1,22 @@
 plugins {
     id 'java-library'
     id 'io.qameta.allure' version '2.11.2'
+    id "io.freefair.lombok" version "8.6"
 }
 
 repositories {
     mavenCentral()
 }
-def allureVersion = "2.27.0",
-    selenideVersion = "7.3.1",
-    restAssuredVersion = "5.4.0";
+def aspectjWeaverVersion = "1.9.22",
+    selenideVersion = "7.3.3",
+    restAssuredVersion="5.5.0",
+    allureVersion = "2.27.0",
+    junitVersion = "5.10.2",
+    slf4jVersion = "2.0.13",
+    commonsVersion = "2.11.0"
 
-compileJava.options.encoding = 'UTF-8';
-compileTestJava.options.encoding = 'UTF-8';
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
 
 allure {
     report {
@@ -31,10 +36,14 @@ dependencies {
     testImplementation (
             "com.codeborne:selenide:$selenideVersion",
             "io.qameta.allure:allure-selenide:$allureVersion",
-            "org.junit.jupiter:junit-jupiter:5.10.2",
-            'org.slf4j:slf4j-simple:2.0.13',
+            'io.qameta.allure:allure-rest-assured:2.27.0',
+            'io.rest-assured:json-schema-validator:5.4.0',
+            "org.junit.jupiter:junit-jupiter:$junitVersion",
+            "org.slf4j:slf4j-simple:$slf4jVersion",
             'org.aeonbits.owner:owner:1.0.12',
-            "io.qameta.allure:allure-selenide:$allureVersion"
+            'org.assertj:assertj-core:3.26.0',
+            "io.rest-assured:rest-assured:$restAssuredVersion",
+            "commons-io:commons-io:$commonsVersion",
     )
 }
 
@@ -50,11 +59,22 @@ tasks.withType(Test).configureEach {
     }
 }
 
-tasks.register('twitchTests', Test) {
+tasks.register('twitchUITests', Test) {
     useJUnitPlatform {
-        includeTags("WEB")
+        includeTags("UI")
     }
 }
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
+
+tasks.register('twitchAPITests', Test) {
+    useJUnitPlatform {
+        includeTags("API")
+    }
 }
+tasks.register('twitchAllTests', Test) {
+    useJUnitPlatform {
+        includeTags("UI", "API")
+    }
+}
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+    }

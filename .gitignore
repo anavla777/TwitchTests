@@ -39,3 +39,7 @@ out/
 
 ### Gradle ###
 .gradle
+src/test/resources/config/auth.properties
+src/test/resources/config/remote.properties
+gradlew
+gradlew.bat
