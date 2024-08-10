@@ -27,8 +27,8 @@ public class StreamsApiTests extends TestBaseAPI {
             assertThat(response.getData().get(0).started_at).isNotNull();
             assertThat(response.getData().get(1).id).isNotNull();
             assertThat(response.getData().get(1).started_at).isNotNull();
-            assertThat(response.getData().get(response.getData().size()).id).isNotNull();
-            assertThat(response.getData().get(response.getData().size()).started_at).isNotNull();
+            assertThat(response.getData().get(response.getData().size()-1).id).isNotNull();
+            assertThat(response.getData().get(response.getData().size()-1).started_at).isNotNull();
         });
     }
 
@@ -42,7 +42,7 @@ public class StreamsApiTests extends TestBaseAPI {
             assertThat(response.getData()).hasSizeGreaterThanOrEqualTo(1);
             assertThat(response.getData().get(0).language).isEqualTo(testData.streamLanguage());
             assertThat(response.getData().get(1).language).isEqualTo(testData.streamLanguage());
-            assertThat(response.getData().get(response.getData().size()).language).isEqualTo(testData.streamLanguage());
+            assertThat(response.getData().get(response.getData().size()-1).language).isEqualTo(testData.streamLanguage());
         });
     }
 }
