@@ -180,6 +180,14 @@ remoteUrl - selenoid URL
 selenoidUser - selenoid user
 selenoidPass - selenoid password
 ```
+And auth tokens in auth.properties file in Jenkins: 
+```bash 
+  client_id = *app token client id*
+  client_secret = *app token client secret*
+  grant_type=client_credentials
+  user_client_id = *user client id*
+  user_token = *user app token*
+```
 ___
 <a id="allure"></a>
 ## <img alt="Allure" height="25" src="media/logo/Allure.svg" width="25"/></a> <a name="Allure"></a>Allure [report](https://jenkins.autotests.cloud/job/27-anavla777-twitch-tests/allure/)</a>
