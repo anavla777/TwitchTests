@@ -165,8 +165,9 @@ gradle allureServe
 ```
 ***Remote launch via Jenkins:***
 ```bash  
-clean twitchAllTests
--Denv=remote
+clean ${TASK}
+-Denv=${ENV}
+where ENV and TASK can be selected before run
 ```
 Additional settings can be configured via remote.properties file in Jenkins:
 ```bash 
