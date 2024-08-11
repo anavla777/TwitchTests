@@ -157,7 +157,7 @@ gradle clean twitchUITests
   ```
 - launch only API tests
 ```bash  
-gradle clean twitchAPITests - API only
+gradle clean twitchAPITests
   ```
 - Launch allure reporting server:
 ```bash 
