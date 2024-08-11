@@ -7,8 +7,7 @@ plugins {
 repositories {
     mavenCentral()
 }
-def aspectjWeaverVersion = "1.9.22",
-    selenideVersion = "7.3.3",
+def selenideVersion = "7.3.3",
     restAssuredVersion="5.5.0",
     allureVersion = "2.27.0",
     junitVersion = "5.10.2",

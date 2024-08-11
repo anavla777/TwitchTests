@@ -9,19 +9,20 @@
 ____
 
 * <a href="#tools">Technology stack</a>
-
-* <a href="#cases">Examples of automated tests</a>
-
+* <a href="#cases">Implemented autotests</a>
 * <a href="#jenkins">Build in Jenkins</a>
-
 * <a href="#console">Launch from command line</a>
-
 * <a href="#allure">Allure report</a>
-
+* <a href="#testops">Allure TestOps Integration</a>
+* <a href="#jira">Jira Integration</a>
 * <a href="#telegram"> Telegram Notifications</a>
-
 * <a href="#video">Examples of test execution in Selenoid</a>
 ____
+## Main project features
+- Project contains API and UI tests
+- Ability to launch all tests (API + UI) or API and UI separately
+- Remote launch via Jenkins with Allure report and Telegram notification
+---
 <a id="tools"></a>
 ## <a name="Technonlogy stack">**Technology stack**</a>
 
@@ -91,32 +92,73 @@ ____
 
 ### **Build parameters in Jenkins:**
 
-- *ENV*
+- *ENV* (remote)
 - *TASK (twitchAllTests, twitchUITests, twitchAPITests)*
-Additional setting should be done in remote.properties
+UI part is configured via remote.properties (created in Jenkins)
+API credentials are configured via auth.properties
 <a id="console"></a>
 ## Launch commands
-___
-***Locally:***
-```bash  
-gradle clean twitchAllTests 
-  -Denv=remote - for test runs on remote selenoid
-OR
-  -Denv=local - if you want to run tests on your machine
-  Create local.properties (committed in repo) or remote.properties for proper configuration and place it into
-  "src/test/resources/config/" directory
-  ```
-available settings:
+
+---
+
+Project allows to run tests locally
+
+Before local start, create the following files:
+- remote.properties in src/test/resources/config/ directory (for Selenoid runs).
+  In this file you need to specify:
+  - baseUrl = *project base URL*
+  - browser = *browser in which tests will be performed*
+  - browserSize = *browser windows size*
+  - browserVersion = *browser version*
+  - isRemote = *true*
+  - remoteUrl = *selenoid URL*
+  - selenoidUser = *selenoid user*
+  - selenoidPass = *selenoid password*
+- for tests on local browser update local.properties, if needed:
+
+    - baseUrl = *project base URL*
+    - browser = *browser in which tests will be performed*
+    - browserSize = *browser windows size*
+    - browserVersion = *browser version*
+    - isRemote = *false*
+- auth.properties file in src/test/resources/config/
+
+    In this file specify:
+  - client_id = *app token client id*
+  - client_secret = *app token client secret*
+  - grant_type=client_credentials
+  - user_client_id = *user client id*
+  - user_token = *user app token*
+
+
+- launch all tests
 ```bash
-baseUrl - project base URL
-browser - browser in which tets will be performed
-browserSize - browser windows size
-browserVersion - browser version
-isRemote - if true, remote selenoid host wil be used for tests. Otherwise 3 settins below will be ignored
-remoteUrl - selenoid URL
-selenoidUser - selenoid user
-selenoidPass - selenoid password
-```
+for test runs on remote selenoid:
+
+gradle clean twitchAllTests 
+  -Denv=remote
+  
+for test runs on local browser:
+
+gradle clean twitchAllTests
+  -Denv=local
+  ```
+- launch only UI tests
+```bash  
+for test runs on remote selenoid:
+
+gradle clean twitchUITests 
+  -Denv=remote
+  
+for test runs on local browser:
+
+gradle clean twitchUITests
+  -Denv=local
+  ```
+- launch only API tests
+```bash  
+gradle clean twitchAPITests - API only
+  ```
 - Launch allure reporting server:
 ```bash 
 gradle allureServe
@@ -126,7 +168,7 @@ gradle allureServe
 clean twitchAllTests
 -Denv=remote
 ```
-Additional setting can be configured via remote.properties file:
+Additional settings can be configured via remote.properties file in Jenkins:
 ```bash 
 baseUrl - project base URL
 browser - browser in which tets will be performed
@@ -156,7 +198,7 @@ ___
 
 ---
 <a id="testops"></a>
-## <b><a target="_blank" href="add link">Allure TestOps</a></b> Integration
+## <b><a target="_blank" href="https://allure.autotests.cloud/project/4333">Allure TestOps</a></b> Integration
 ___
 >Test run graphs
 >
@@ -167,7 +209,7 @@ ___
 <img src="media/screenshots/TestOpsTests.PNG"> 
 
 ---
-<b><a target="_blank" href="add link">Jira</a></b> Integration
+<b><a id="jira" target="_blank" href="https://jira.autotests.cloud/browse/HOMEWORK-1316">Jira</a></b> Integration
 ---
 >Jira task
 >
