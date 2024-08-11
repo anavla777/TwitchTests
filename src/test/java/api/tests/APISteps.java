@@ -42,15 +42,16 @@ public class APISteps {
                 .extract().as(ScheduleResponseDTO.class);
     }
 
-    @Step("Delete schedule")
-    public static void deleteBroadCastSchedule(String broadcasterId, String scheduleId) {
-        given(twitchRequestSpec)
+    @Step("Delete created schedule")
+    public static String deleteBroadCastSchedule(String broadcasterId, String scheduleId) {
+        return given(twitchRequestSpec)
                 .queryParam("broadcaster_id", broadcasterId)
                 .queryParam("id", scheduleId)
                 .when()
                 .delete("/schedule/segment")
                 .then()
-                .spec(NoContentResponseSpec);
+                .spec(NoContentResponseSpec)
+                .extract().asString();
     }
 
     @Step("Get all streams by sending GET request")

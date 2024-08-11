@@ -79,17 +79,8 @@ public class ScheduleApiTests extends TestBaseAPI {
 
         ScheduleResponseDTO response = APISteps
                 .createBroadCastSchedule(requestBody, testData.broadcasterId());
-        String deleteResponse =
-                step("Delete created schedule", () ->
-                        given(twitchRequestSpec)
-                                .queryParam("broadcaster_id", testData.broadcasterId())
-                                .queryParam("id", response.getData().segments.get(0).id)
-                                .when()
-                                .delete("/schedule/segment")
-                                .then()
-                                .spec(NoContentResponseSpec)
-                                .extract().asString()
-                );
+        String deleteResponse = APISteps
+                .deleteBroadCastSchedule(testData.broadcasterId(), response.getData().segments.get(0).id);
         step("Verify that schedule was deleted (response body is empty)", () -> {
             assertThat(deleteResponse).isEqualTo("");
         });
