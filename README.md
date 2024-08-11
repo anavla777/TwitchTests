@@ -52,7 +52,7 @@ ____
 - [x] `Jenkins` - CI/CD for remote test runs
 - [x] `Allure Report` - Test reporting tool
 - [x] `Allure TestOps` - Test Management tool
-- [x] `Telegram` - Messanger for test report notifications
+- [x] `Telegram` - Messenger for test report notifications
 - [x] `Jira` - Bugtracker system
 
 ____
@@ -83,10 +83,10 @@ ____
 
 ____
 <a id="jenkins"></a>
-## <img alt="Jenkins" height="25" src="media/logo/Jenkins.svg" width="25"/></a><a name="Building"></a>Building in [Jenkins](https://jenkins.autotests.cloud/job/C27-anavla777-unit14-TwitchTests/)</a>
+## <img alt="Jenkins" height="25" src="media/logo/Jenkins.svg" width="25"/></a><a name="Building"></a>Building in [Jenkins](https://jenkins.autotests.cloud/job/27-anavla777-twitch-tests/)</a>
 ____
 <p align="center">  
-<a href="https://jenkins.autotests.cloud/job/27-anavla777-twitch-tests/"><img src="media/screenshots/JenkinsBuild.PNG" alt="Jenkins" width="950"/></a>  
+<img src="media/screenshots/JenkinsBuild.PNG" alt="Jenkins" width="950"/>  
 </p>
 
 
@@ -185,13 +185,13 @@ ___
 ## <img alt="Allure" height="25" src="media/logo/Allure.svg" width="25"/></a> <a name="Allure"></a>Allure [report](https://jenkins.autotests.cloud/job/27-anavla777-twitch-tests/allure/)</a>
 ___
 
-### *Report main page*
+### *Test run graphs*
 
 <p align="center">  
 <img title="Allure Overview Dashboard" src="media/screenshots/AllureMain.PNG" width="850" alt="">  
 </p>  
 
-### *Graphs*
+### *Detailed test run report*
 
   <p align="center">  
 <img title="Allure Graphs" src="media/screenshots/Graphs.PNG" width="850" alt="">
