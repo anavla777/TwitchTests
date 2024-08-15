@@ -1,0 +1,3 @@
+languageCode,browse,login,register,active,live,signUpButton,loginButton,browseLink,linkToActive,liveIndicator
+RU,Просмотр,Войти,Регистрация,Активные каналы,В ЭФИРЕ,"[data-a-target='signup-button']","[data-a-target='login-button']","[data-a-target='browse-link']","h2.tw-title",".tw-channel-status-text-indicator"
+EN,Browse,Log In,Sign Up,Live channels,Live,"[data-a-target='signup-button']","[data-a-target='login-button']","[data-a-target='browse-link']","h2.tw-title",".tw-channel-status-text-indicator"

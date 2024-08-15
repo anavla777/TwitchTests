@@ -9,13 +9,13 @@ public class ScheduleResponseDTO {
     public Data data;
 
     public static class Category {
-        public String id;
+        public int id;
         public String name;
     }
 
     public static class Data {
         public ArrayList<Segment> segments;
-        public String broadcaster_id;
+        public int broadcaster_id;
         public String broadcaster_name;
         public String broadcaster_login;
         public Object vacation;

@@ -11,8 +11,8 @@ public class LanguageSwitcher {
             languageDropdown = $("[data-a-target='language-dropdown-link']");
 
     public void selectLanguage(String language) {
-       userMenu.click();
-       languageDropdown.click();
+        userMenu.click();
+        languageDropdown.click();
         $(by("data-language", language.toLowerCase())).click();
     }
 }

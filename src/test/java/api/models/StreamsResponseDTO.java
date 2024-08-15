@@ -3,7 +3,6 @@ package api.models;
 import lombok.Data;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 @Data
 public class StreamsResponseDTO {
@@ -20,7 +19,7 @@ public class StreamsResponseDTO {
         public String type;
         public String title;
         public int viewer_count;
-        public Date started_at;
+        public String started_at;
         public String language;
         public String thumbnail_url;
         public ArrayList<Object> tag_ids;

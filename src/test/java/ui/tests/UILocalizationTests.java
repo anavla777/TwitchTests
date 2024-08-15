@@ -1,12 +1,12 @@
 package ui.tests;
 
-import data.Language;
+import common.data.LanguageData;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EnumSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import static io.qameta.allure.Allure.step;
 
@@ -16,15 +16,15 @@ import static io.qameta.allure.Allure.step;
 @DisplayName("UI: Localization tests")
 public class UILocalizationTests extends TestBaseUI {
 
-    @EnumSource(Language.class)
-    @ParameterizedTest(name = "Twitch Main Page has correct text on {0} streamLanguage")
+    @ParameterizedTest(name = "Twitch Main Page has correct text on {0} language")
+    @MethodSource("common.utils.CsvUtils#provideLanguageData")
     @DisplayName("UI: Twitch Main Page has correct text on RU and EN languages")
-    void twitchMainPageShouldDisplayCorrectTextTest(Language language) {
+    void twitchMainPageShouldDisplayCorrectTextTest(LanguageData languageData) {
         step("Open main page",
-                mainPage::openPage);
-        step("Switch streamLanguage to " + language.name(), () ->
-                mainPage.switchLanguage(language.name()));
-        step("Check translation for " + language.name(), () ->
-                mainPage.checkLocalization(language));
+                mainPage::openMainPage);
+        step("Switch language to " + languageData.getLanguageCode(), () ->
+                mainPage.switchLanguage(languageData.getLanguageCode()));
+        step("Check translation for " + languageData.getLanguageCode(), () ->
+                mainPage.checkLocalization(languageData));
     }
 }

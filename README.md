@@ -48,7 +48,7 @@ ____
 - [x] `Junit5` - Test framework
 - [x] `Selenide` - UI testing framework based on Selenium Webdriver
 - [x] `REST-assured` - API testing framework
-- [x] `Selenoid` - Tool for remote browser start in Docker container
+- [x] `Selenoid` - Tool for remote browser run in Docker container
 - [x] `Jenkins` - CI/CD for remote test runs
 - [x] `Allure Report` - Test reporting tool
 - [x] `Allure TestOps` - Test Management tool
@@ -65,8 +65,8 @@ ____
 - [x] UI: Parametrized category filtration
 - [x] UI: Parametrized tag check for category
 - [x] UI: Live stream opening
-- [x] UI: Navigation to Developers page
-- [x] UI: Navigation to Documentation page
+- [x] UI: Menu contains Developers option
+- [x] UI: Doc Search test
 
 ### API
 - [x] API: Login with valid credentials
@@ -100,7 +100,8 @@ API credentials are configured via auth.properties
 ## Launch commands
 
 ---
-
+<details>
+  <summary>Project launch details</summary>
 Project allows to run tests locally
 
 Before local start, create the following files:
@@ -188,6 +189,8 @@ And auth tokens in auth.properties file in Jenkins:
   user_client_id = *user client id*
   user_token = *user app token*
 ```
+</details>
+
 ___
 <a id="allure"></a>
 ## <img alt="Allure" height="25" src="media/logo/Allure.svg" width="25"/></a> <a name="Allure"></a>Allure [report](https://jenkins.autotests.cloud/job/27-anavla777-twitch-tests/allure/)</a>

@@ -10,9 +10,11 @@ import org.aeonbits.owner.Config;
         "file:./apiTestData.properties"
 })
 public interface APITestDataConfig extends Config {
+    @Key("video_id")
     String videoId();
 
-    String streamerId();
+    @Key("user_id")
+    String userId();
 
     String streamLanguage();
 
@@ -20,7 +22,7 @@ public interface APITestDataConfig extends Config {
 
     String broadcasterType();
 
-    String broadcasterId();
+    int broadcasterId();
 
     String broadcasterLogin();
 
@@ -29,6 +31,7 @@ public interface APITestDataConfig extends Config {
     String timezone();
 
     String titleEN();
+
     String titleSpacesEN();
 
 }

@@ -28,12 +28,10 @@ public class UIFiltrationTests extends TestBaseUI {
     }
 
     @ValueSource(strings = {"Dota 2", "League of Legends", "Fortnite"})
-    @ParameterizedTest(name = "Selected category should have {0} name")
+    @ParameterizedTest(name = "UI: Selected category should have {0} name")
     @DisplayName("UI: Selected category should have correct category name")
     public void categoryPageShouldDisplayCorrectTextTest(String category) {
-        step("Open main page", mainPage::openPage);
-
-        step("Open Browse page", mainPage::openBrowsePage);
+        step("Open Browse page", browsePage::openBrowsePage);
 
         step("Find " + category + " category", () ->
                 browsePage.findCategory(category));
@@ -41,12 +39,11 @@ public class UIFiltrationTests extends TestBaseUI {
                 browsePage.verifyCategory(category));
     }
 
-    @ParameterizedTest(name = "Filtered categories should have {0} tag")
+    @ParameterizedTest(name = "UI: Filtered categories should have {0} tag")
     @MethodSource("categoryShouldHaveCorrectTags")
     @DisplayName("UI: Filtered categories should have specified tag")
     public void filterByTagsTest(String tag) {
-        step("Open main page", mainPage::openPage);
-        step("Navigate to Browse page", mainPage::openBrowsePage);
+        step("Open Browse page", browsePage::openBrowsePage);
 
         step("Enter tag", () ->
                 browsePage.enterTag(tag));

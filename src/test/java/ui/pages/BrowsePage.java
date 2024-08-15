@@ -5,8 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.*;
 
 public class BrowsePage {
     private final SelenideElement
@@ -18,6 +17,11 @@ public class BrowsePage {
     public BrowsePage findCategory(String category) {
         $("[data-a-id='card-" + category.replaceAll("\\s", "") + "']")
                 .scrollIntoView(false).click();
+        return this;
+    }
+
+    public BrowsePage openBrowsePage() {
+        open("/directory");
         return this;
     }
 

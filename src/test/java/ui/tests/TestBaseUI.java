@@ -9,7 +9,6 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import ui.pages.BrowsePage;
 import ui.pages.MainPage;
@@ -40,10 +39,6 @@ public class TestBaseUI {
                     + webConfig.selenoidPass() +
                     "@" + webConfig.remoteUrl()
                     + "/wd/hub";
-        }
-        if (webConfig.browser().equals("chrome")) {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.addArguments("--lang=en-US");
         }
 
         Configuration.pageLoadStrategy = "eager";
